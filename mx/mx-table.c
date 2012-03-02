@@ -423,7 +423,7 @@ mx_container_add_actor (ClutterContainer *container,
 {
   MxTablePrivate *priv = MX_TABLE (container)->priv;
 
-  clutter_actor_set_parent (actor, CLUTTER_ACTOR (container));
+  clutter_actor_add_child (CLUTTER_ACTOR (container), actor);
 
   priv->children = g_list_append (priv->children, actor);
 
@@ -462,7 +462,7 @@ mx_container_remove_actor (ClutterContainer *container,
     priv->last_focus = NULL;
 
   priv->children = g_list_delete_link (priv->children, item);
-  clutter_actor_unparent (actor);
+  clutter_actor_remove_child (CLUTTER_ACTOR (container), actor);
 
   /* update row/column count */
   rows = 0;

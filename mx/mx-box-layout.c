@@ -307,7 +307,7 @@ mx_box_container_add_actor (ClutterContainer *container,
 {
   MxBoxLayoutPrivate *priv = MX_BOX_LAYOUT (container)->priv;
 
-  clutter_actor_set_parent (actor, CLUTTER_ACTOR (container));
+  clutter_actor_add_child (CLUTTER_ACTOR (container), actor);
 
   priv->children = g_list_append (priv->children, actor);
 
@@ -351,14 +351,12 @@ mx_box_container_remove_actor (ClutterContainer *container,
     priv->last_focus = NULL;
 
   priv->children = g_list_delete_link (priv->children, item);
-  clutter_actor_unparent (actor);
+  clutter_actor_remove_child (CLUTTER_ACTOR (container), actor);
 
   if (priv->enable_animations)
     _mx_box_layout_start_animation (MX_BOX_LAYOUT (container));
   else
     clutter_actor_queue_relayout ((ClutterActor *) container);
-
-  g_signal_emit_by_name (container, "actor-removed", actor);
 
   g_object_unref (actor);
 }
@@ -1791,7 +1789,7 @@ mx_box_layout_add_actor (MxBoxLayout  *box,
                                   actor,
                                   position);
   mx_box_layout_create_child_meta (box, actor);
-  clutter_actor_set_parent (actor, (ClutterActor*) box);
+  clutter_actor_add_child ((ClutterActor*) box, actor);
 
   if (priv->enable_animations)
     {
