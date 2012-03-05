@@ -295,7 +295,7 @@ create_combo_box (gchar *selected_widget)
 
       haystack = g_ascii_strdown (g_type_name (types[i]), -1);
 
-      if (strstr (haystack, needle))
+      if (needle[0] != '\0' && strstr (haystack, needle))
         set_index = i;
 
       g_free (haystack);
