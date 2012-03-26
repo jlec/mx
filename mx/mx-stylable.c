@@ -490,7 +490,7 @@ mx_stylable_get_property_internal (MxStylable *stylable,
 }
 
 /**
- * mx_stylable_get_property:
+ * mx_stylable_get_style_property:
  * @stylable: a #MxStylable
  * @property_name: the name of the property
  * @value: (out): return location for an empty #GValue
@@ -499,9 +499,9 @@ mx_stylable_get_property_internal (MxStylable *stylable,
  * into @value.
  */
 void
-mx_stylable_get_property (MxStylable  *stylable,
-                          const gchar *property_name,
-                          GValue      *value)
+mx_stylable_get_style_property (MxStylable  *stylable,
+                                const gchar *property_name,
+                                GValue      *value)
 {
   GParamSpec *pspec;
 
