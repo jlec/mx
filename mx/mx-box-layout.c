@@ -1650,7 +1650,7 @@ mx_box_layout_insert_actor (MxBoxLayout  *box,
   g_return_if_fail (MX_IS_BOX_LAYOUT (box));
   g_return_if_fail (CLUTTER_IS_ACTOR (actor));
 
-  clutter_actor_add_child ((ClutterActor*) box, actor);
+  clutter_actor_insert_child_at_index ((ClutterActor*) box, actor, position);
 }
 
 /**
